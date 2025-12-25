@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Roll Auth
 
-## Getting Started
+A comprehensive authentication framework for Next.js applications, built with modern tools and best practices.
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This project demonstrates a full-featured authentication system using Next.js 16, Better Auth, Prisma, and PostgreSQL. It includes user registration, login, social authentication (Google), session management, and a protected dashboard.
+
+## Features
+
+- **Email and Password Authentication**: Secure sign-up and sign-in with email verification.
+- **Social Login**: Google OAuth integration for quick authentication.
+- **Session Management**: Persistent sessions with secure token handling.
+- **Protected Routes**: Dashboard accessible only to authenticated users.
+- **Modern UI**: Built with shadcn/ui components and Tailwind CSS for a clean, responsive design.
+- **Type Safety**: Full TypeScript support throughout the application.
+- **Database Integration**: Prisma ORM with PostgreSQL for robust data management.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Authentication**: Better Auth
+- **Database**: PostgreSQL with Prisma ORM
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+
+## Prerequisites
+
+- Node.js (version 18 or higher)
+- pnpm
+- PostgreSQL database
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/ibrahimraimi/next-roll-auth
+   cd next-roll-auth
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add the following:
+
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
+   NEXTAUTH_SECRET="your-nextauth-secret"
+   ```
+
+4. Set up the database:
+   ```bash
+   pnpm run migrate:create init
+   pnpm run generate:client
+   ```
+
+## Usage
+
+1. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+2. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+3. Sign up or sign in to access the dashboard.
+
+## Scripts
+
+- `pnpm dev`: Start the development server
+- `pnpm build`: Build the application for production
+- `pnpm start`: Start the production server
+- `pnpm lint`: Run ESLint for code linting
+- `pnpm migrate:create`: Create a new Prisma migration
+- `pnpm generate:client`: Generate Prisma client
+
+## Project Structure
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+├── app/                    # Next.js app directory
+│   ├── (auth)/            # Authentication routes
+│   ├── api/auth/          # Auth API routes
+│   ├── dashboard/         # Protected dashboard
+│   └── globals.css        # Global styles
+├── components/            # Reusable UI components
+│   ├── ui/               # shadcn/ui components
+│   └── auth/             # Authentication forms
+├── lib/                   # Utility libraries
+│   ├── actions/          # Server actions
+│   ├── client/           # Client-side utilities
+│   └── generated/        # Generated Prisma client
+├── prisma/                # Database schema and migrations
+└── public/                # Static assets
+```
